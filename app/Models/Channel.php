@@ -11,7 +11,7 @@ class Channel extends Model
 
     protected $guarded = [];
 
-    public function getRouteKeyName(): string
+    public function getRouteKeyName()
     {
         return 'slug';
     }

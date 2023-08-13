@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ChannelController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -11,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
 |
-*/
+ */
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,3 +22,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/test', function () {
+    return view('test');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/channel/{slug}/edit', [ChannelController::class, 'edit'])->name('channel.edit');
+});
